@@ -1,0 +1,2 @@
+- Build DHCP with DHCPAuth module (PKI + PGP). 
+- Activate ENABLE_STATISTICS in ./includes/dhcpd.h to extract the metrics. 

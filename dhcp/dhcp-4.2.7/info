@@ -1,0 +1,38 @@
+DHCP code:
+	- files:
+		dhcp-4.2.7-RELNOTES
+		dhcp-4.2.7.tar.gz
+		dhcp-4.2.7.tar.gz.asc
+		dhcp-4.2.7.tar.gz.sha1.asc
+		dhcp-4.2.7.tar.gz.sha256.asc
+		dhcp-4.2.7.tar.gz.sha512.asc
+		old-signatures/dhcp-4.2.7.tar.gz.asc
+		old-signatures/dhcp-4.2.7.tar.gz.sha1.asc
+		old-signatures/dhcp-4.2.7.tar.gz.sha256.asc
+		old-signatures/dhcp-4.2.7.tar.gz.sha512.asc
+
+	- downloaded from: ftp://ftp.isc.org/isc/dhcp/
+
+
+DHCP code sign PGP public key:
+	- files:
+		codesign@isc.org
+		old-codesign/codesign@isc.org
+
+	- downloaded from: https://pgp.mit.edu/
+
+
+Import DHCP code sign PGP public key:
+	gpg --import codesign@isc.org
+
+
+Verify code signature:
+	gpg --verify dhcp-4.2.7.tar.gz.asc dhcp-4.2.7.tar.gz
+
+
+Delete DHCP code sign PGP public key:
+	gpg --delete-key codesign@isc.org
+
+
+Details: 
+	https://kb.isc.org/article/AA-01225/0/Verifying-the-Integrity-of-ISC-Downloads-using-PGP-GPG.html

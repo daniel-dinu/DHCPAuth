@@ -1,0 +1,413 @@
+================================================================================
+				 DHCPAuth - DHCP Message Authentication Module
+                           		 version 1.0.0
+================================================================================
+
+
+Copyright
+=========
+DHCPAuth is distributed under the GNU General Public License, version 3 or 
+later.
+
+
+Project structure
+=================
+.
+├── AUTHORS
+├── CHANGELOG
+├── conf
+│   ├── dhcpauth.conf
+│   └── dhcpd.conf
+├── dhcp
+│   └── dhcp-4.2.7
+│       ├── codesign@isc.org
+│       ├── dhcp-4.2.7-RELNOTES
+│       ├── dhcp-4.2.7.tar.gz
+│       ├── dhcp-4.2.7.tar.gz.asc
+│       ├── dhcp-4.2.7.tar.gz.sha1.asc
+│       ├── dhcp-4.2.7.tar.gz.sha256.asc
+│       ├── dhcp-4.2.7.tar.gz.sha512.asc
+│       ├── info
+│       ├── old-codesign
+│       │   └── codesign@isc.org
+│       └── old-signatures
+│           ├── dhcp-4.2.7.tar.gz.asc
+│           ├── dhcp-4.2.7.tar.gz.sha1.asc
+│           ├── dhcp-4.2.7.tar.gz.sha256.asc
+│           └── dhcp-4.2.7.tar.gz.sha512.asc
+├── generated
+│   ├── set1
+│   │   ├── pgp
+│   │   │   ├── dsa
+│   │   │   └── rsa
+│   │   └── pki
+│   │       ├── dsa
+│   │       └── rsa
+│   ├── set2
+│   │   └── pki
+│   │       ├── dsa
+│   │       ├── ec
+│   │       └── rsa
+│   └── set3
+│       ├── pgp
+│       │   ├── dsa
+│       │   └── rsa
+│       └── pki
+│           ├── dsa
+│           └── rsa
+├── LICENSE
+├── logo
+│   ├── DHCPAuth.eps
+│   ├── DHCPAuth.gif
+│   ├── DHCPAuth.jpg
+│   ├── DHCPAuth Optimized.svg
+│   ├── DHCPAuth.pdf
+│   ├── DHCPAuth Plain.svg
+│   ├── DHCPAuth.png
+│   ├── DHCPAuth.ps
+│   ├── DHCPAuth.svg
+│   └── DHCPAuth.tex
+├── patch
+│   └── info
+├── plots
+│   ├── sim1
+│   │   ├── dsa
+│   │   └── rsa
+│   ├── sim2
+│   │   ├── dsa
+│   │   └── rsa
+│   ├── sim3
+│   │   ├── dsa
+│   │   └── rsa
+│   ├── sim4
+│   │   ├── dsa
+│   │   ├── ec
+│   │   └── rsa
+│   └── sim5
+│       ├── dsa
+│       └── rsa
+├── processed
+│   ├── sim1
+│   ├── sim2
+│   ├── sim3
+│   ├── sim4
+│   └── sim5
+├── README
+├── results
+│   ├── sim1
+│   │   ├── client
+│   │   │   ├── dsa
+│   │   │   └── rsa
+│   │   └── server
+│   │       ├── dsa
+│   │       └── rsa
+│   ├── sim2
+│   │   ├── client
+│   │   │   ├── dsa
+│   │   │   └── rsa
+│   │   └── server
+│   │       ├── dsa
+│   │       └── rsa
+│   ├── sim3
+│   │   ├── client
+│   │   │   ├── dsa
+│   │   │   └── rsa
+│   │   └── server
+│   │       ├── dsa
+│   │       └── rsa
+│   ├── sim4
+│   │   ├── client
+│   │   │   ├── dsa
+│   │   │   ├── ec
+│   │   │   └── rsa
+│   │   └── server
+│   │       ├── dsa
+│   │       ├── ec
+│   │       └── rsa
+│   └── sim5
+│       ├── client
+│       │   ├── dsa
+│       │   └── rsa
+│       └── server
+│           ├── dsa
+│           └── rsa
+├── scripts
+│   ├── clean.sh
+│   ├── generate
+│   │   ├── common
+│   │   │   └── run_script.sh
+│   │   ├── generate.sh
+│   │   ├── set1
+│   │   │   ├── info
+│   │   │   ├── pgp
+│   │   │   │   ├── constants.sh
+│   │   │   │   ├── create_directory_structure.sh
+│   │   │   │   ├── generate_dsa.sh
+│   │   │   │   ├── generate_rsa.sh
+│   │   │   │   └── generate.sh
+│   │   │   └── pki
+│   │   │       ├── constants.sh
+│   │   │       ├── create_directory_structure.sh
+│   │   │       ├── generate_dsa.sh
+│   │   │       ├── generate_rsa.sh
+│   │   │       └── generate.sh
+│   │   ├── set2
+│   │   │   ├── info
+│   │   │   └── pki
+│   │   │       ├── constants.sh
+│   │   │       ├── create_directory_structure.sh
+│   │   │       ├── generate_dsa.sh
+│   │   │       ├── generate_ec.sh
+│   │   │       ├── generate_rsa.sh
+│   │   │       └── generate.sh
+│   │   └── set3
+│   │       ├── info
+│   │       ├── pgp
+│   │       │   ├── constants.sh
+│   │       │   ├── create_directory_structure.sh
+│   │       │   ├── generate_dsa.sh
+│   │       │   ├── generate_rsa.sh
+│   │       │   └── generate.sh
+│   │       └── pki
+│   │           ├── constants.sh
+│   │           ├── create_directory_structure.sh
+│   │           ├── generate_dsa.sh
+│   │           ├── generate_rsa.sh
+│   │           └── generate.sh
+│   ├── plot
+│   │   ├── plot.sh
+│   │   ├── sim1
+│   │   │   ├── dsa
+│   │   │   │   ├── plot1.gnu
+│   │   │   │   ├── plot1.sh
+│   │   │   │   ├── plot2.gnu
+│   │   │   │   ├── plot2.sh
+│   │   │   │   ├── plot3.gnu
+│   │   │   │   ├── plot3.sh
+│   │   │   │   ├── plot4.gnu
+│   │   │   │   ├── plot4.sh
+│   │   │   │   ├── plot5.gnu
+│   │   │   │   ├── plot5.sh
+│   │   │   │   └── plot.sh
+│   │   │   ├── plot.sh
+│   │   │   └── rsa
+│   │   │       ├── plot1.gnu
+│   │   │       ├── plot1.sh
+│   │   │       ├── plot2.gnu
+│   │   │       ├── plot2.sh
+│   │   │       ├── plot3.gnu
+│   │   │       ├── plot3.sh
+│   │   │       ├── plot4.gnu
+│   │   │       ├── plot4.sh
+│   │   │       ├── plot5.gnu
+│   │   │       ├── plot5.sh
+│   │   │       └── plot.sh
+│   │   ├── sim2
+│   │   │   ├── dsa
+│   │   │   │   ├── plot1.gnu
+│   │   │   │   ├── plot1.sh
+│   │   │   │   ├── plot2.gnu
+│   │   │   │   ├── plot2.sh
+│   │   │   │   ├── plot3.gnu
+│   │   │   │   ├── plot3.sh
+│   │   │   │   ├── plot4.gnu
+│   │   │   │   ├── plot4.sh
+│   │   │   │   ├── plot5.gnu
+│   │   │   │   ├── plot5.sh
+│   │   │   │   └── plot.sh
+│   │   │   ├── plot.sh
+│   │   │   └── rsa
+│   │   │       ├── plot1.gnu
+│   │   │       ├── plot1.sh
+│   │   │       ├── plot2.gnu
+│   │   │       ├── plot2.sh
+│   │   │       ├── plot3.gnu
+│   │   │       ├── plot3.sh
+│   │   │       ├── plot4.gnu
+│   │   │       ├── plot4.sh
+│   │   │       ├── plot5.gnu
+│   │   │       ├── plot5.sh
+│   │   │       └── plot.sh
+│   │   ├── sim3
+│   │   │   ├── dsa
+│   │   │   │   ├── plot1.gnu
+│   │   │   │   ├── plot1.sh
+│   │   │   │   ├── plot2.gnu
+│   │   │   │   ├── plot2.sh
+│   │   │   │   ├── plot3.gnu
+│   │   │   │   ├── plot3.sh
+│   │   │   │   ├── plot4.gnu
+│   │   │   │   ├── plot4.sh
+│   │   │   │   ├── plot5.gnu
+│   │   │   │   ├── plot5.sh
+│   │   │   │   └── plot.sh
+│   │   │   ├── plot.sh
+│   │   │   └── rsa
+│   │   │       ├── plot1.gnu
+│   │   │       ├── plot1.sh
+│   │   │       ├── plot2.gnu
+│   │   │       ├── plot2.sh
+│   │   │       ├── plot3.gnu
+│   │   │       ├── plot3.sh
+│   │   │       ├── plot4.gnu
+│   │   │       ├── plot4.sh
+│   │   │       ├── plot5.gnu
+│   │   │       ├── plot5.sh
+│   │   │       └── plot.sh
+│   │   ├── sim4
+│   │   │   ├── dsa
+│   │   │   │   ├── plot1.gnu
+│   │   │   │   ├── plot1.sh
+│   │   │   │   ├── plot2.gnu
+│   │   │   │   ├── plot2.sh
+│   │   │   │   ├── plot3.gnu
+│   │   │   │   ├── plot3.sh
+│   │   │   │   ├── plot4.gnu
+│   │   │   │   ├── plot4.sh
+│   │   │   │   ├── plot5.gnu
+│   │   │   │   ├── plot5.sh
+│   │   │   │   └── plot.sh
+│   │   │   ├── ec
+│   │   │   │   ├── plot1.gnu
+│   │   │   │   ├── plot1.sh
+│   │   │   │   ├── plot2.gnu
+│   │   │   │   ├── plot2.sh
+│   │   │   │   ├── plot3.gnu
+│   │   │   │   ├── plot3.sh
+│   │   │   │   ├── plot4.gnu
+│   │   │   │   ├── plot4.sh
+│   │   │   │   ├── plot5.gnu
+│   │   │   │   ├── plot5.sh
+│   │   │   │   └── plot.sh
+│   │   │   ├── plot.sh
+│   │   │   └── rsa
+│   │   │       ├── plot1.gnu
+│   │   │       ├── plot1.sh
+│   │   │       ├── plot2.gnu
+│   │   │       ├── plot2.sh
+│   │   │       ├── plot3.gnu
+│   │   │       ├── plot3.sh
+│   │   │       ├── plot4.gnu
+│   │   │       ├── plot4.sh
+│   │   │       ├── plot5.gnu
+│   │   │       ├── plot5.sh
+│   │   │       └── plot.sh
+│   │   └── sim5
+│   │       ├── dsa
+│   │       │   ├── plot1.gnu
+│   │       │   ├── plot1.sh
+│   │       │   ├── plot2.gnu
+│   │       │   ├── plot2.sh
+│   │       │   ├── plot3.gnu
+│   │       │   ├── plot3.sh
+│   │       │   ├── plot4.gnu
+│   │       │   ├── plot4.sh
+│   │       │   ├── plot5.gnu
+│   │       │   ├── plot5.sh
+│   │       │   └── plot.sh
+│   │       ├── plot.sh
+│   │       └── rsa
+│   │           ├── plot1.gnu
+│   │           ├── plot1.sh
+│   │           ├── plot2.gnu
+│   │           ├── plot2.sh
+│   │           ├── plot3.gnu
+│   │           ├── plot3.sh
+│   │           ├── plot4.gnu
+│   │           ├── plot4.sh
+│   │           ├── plot5.gnu
+│   │           ├── plot5.sh
+│   │           └── plot.sh
+│   ├── process
+│   │   ├── client
+│   │   │   ├── client_results.py
+│   │   │   └── __init__.py
+│   │   ├── common
+│   │   │   ├── constants.py
+│   │   │   ├── dat_file.py
+│   │   │   └── __init__.py
+│   │   ├── process.py
+│   │   ├── server
+│   │   │   ├── __init__.py
+│   │   │   └── server_results.py
+│   │   └── simulation
+│   │       ├── __init__.py
+│   │       ├── sim1.py
+│   │       ├── sim2.py
+│   │       ├── sim3.py
+│   │       ├── sim4.py
+│   │       └── sim5.py
+│   └── simulate
+│       ├── common
+│       │   ├── constants.sh
+│       │   └── simulation_time.sh
+│       ├── sim1
+│       │   ├── client
+│       │   │   ├── dhcpauth.conf
+│       │   │   ├── simulate_dsa.sh
+│       │   │   ├── simulate_rsa.sh
+│       │   │   └── simulate.sh
+│       │   ├── info
+│       │   └── server
+│       │       ├── dhcpauth.conf
+│       │       ├── simulate_dsa.sh
+│       │       ├── simulate_rsa.sh
+│       │       └── simulate.sh
+│       ├── sim2
+│       │   ├── client
+│       │   │   ├── dhcpauth.conf
+│       │   │   ├── simulate_dsa.sh
+│       │   │   ├── simulate_rsa.sh
+│       │   │   └── simulate.sh
+│       │   ├── info
+│       │   └── server
+│       │       ├── dhcpauth.conf
+│       │       ├── simulate_dsa.sh
+│       │       ├── simulate_rsa.sh
+│       │       └── simulate.sh
+│       ├── sim3
+│       │   ├── client
+│       │   │   ├── dhcpauth.conf
+│       │   │   ├── simulate_dsa.sh
+│       │   │   ├── simulate_rsa.sh
+│       │   │   └── simulate.sh
+│       │   ├── info
+│       │   └── server
+│       │       ├── dhcpauth.conf
+│       │       ├── simulate_dsa.sh
+│       │       ├── simulate_rsa.sh
+│       │       └── simulate.sh
+│       ├── sim4
+│       │   ├── client
+│       │   │   ├── dhcpauth.conf
+│       │   │   ├── simulate_dsa.sh
+│       │   │   ├── simulate_ec.sh
+│       │   │   ├── simulate_rsa.sh
+│       │   │   └── simulate.sh
+│       │   ├── info
+│       │   └── server
+│       │       ├── dhcpauth.conf
+│       │       ├── simulate_dsa.sh
+│       │       ├── simulate_ec.sh
+│       │       ├── simulate_rsa.sh
+│       │       └── simulate.sh
+│       ├── sim5
+│       │   ├── client
+│       │   │   ├── dhcpauth.conf
+│       │   │   ├── simulate_dsa.sh
+│       │   │   ├── simulate_rsa.sh
+│       │   │   └── simulate.sh
+│       │   ├── info
+│       │   └── server
+│       │       ├── dhcpauth.conf
+│       │       ├── simulate_dsa.sh
+│       │       ├── simulate_rsa.sh
+│       │       └── simulate.sh
+│       ├── simulate_client.sh
+│       └── simulate_server.sh
+├── source
+│   ├── build.sh
+│   └── README
+└── VERSION
+
+139 directories, 257 files

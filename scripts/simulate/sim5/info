@@ -1,0 +1,13 @@
+================================================================================
+sim1
+================================================================================
+
+Simulate:
+	- DHCP server authentication using PKI from set3
+	- DHCP client authentication using PGP from set3
+
+set3:
+	- RSA: 101 key pairs
+		key size: 2048 bits
+	- DSA: 101 key pairs
+		key size: 2048 bits

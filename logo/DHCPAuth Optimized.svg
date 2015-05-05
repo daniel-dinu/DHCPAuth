@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg id="svg2" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="150" width="250" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/">
+ <metadata id="metadata7">
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <g id="layer1" transform="translate(-62.44149,-61.647896)">
+  <rect id="rect3059" height="150" width="250" y="61.648" x="62.441" fill="#00F"/>
+  <text id="text3061" style="letter-spacing:0px;word-spacing:0px;" line-height="125%" font-weight="normal" font-size="45px" font-style="normal" y="153.42401" x="63.999107" font-family="Sans" xml:space="preserve" fill="#000000"><tspan id="tspan3063" y="153.42401" x="63.999107" font-size="45px"><tspan id="tspan3065" font-weight="bold">DHCP</tspan><tspan id="tspan3067" fill="#ff0000">Auth</tspan></tspan></text>
+ </g>
+</svg>

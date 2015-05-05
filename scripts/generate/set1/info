@@ -1,0 +1,24 @@
+================================================================================
+set1
+================================================================================
+
+Generate:
+	- PKI
+		- RSA: 97 key pairs
+			start key size: 1024 bits
+			stop key size: 4096 bits
+			key size step: 32 bits
+		- DSA: 3 key pairs
+			start key size: 1024 bits
+			stop key size: 3072 bits
+			key size step: 1024 bits
+
+	- PGP
+		- RSA: 97 key pairs
+			start key size: 1024 bits
+			stop key size: 4096 bits
+			key size step: 32 bits
+		- DSA: 3 key pairs
+			start key size: 1024 bits
+			stop key size: 3072 bits
+			key size step: 1024 bits

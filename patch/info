@@ -1,0 +1,6 @@
+Steps:
+	1. Download DHCPAuth-patch from:
+		https://github.com/daniel-dinu/DHCPAuth-patch
+	2. Combine DHCPAuth PKI patch and DHCPAuth PGP patch to get the DHCPAuth 
+PKI & PGP patch
+	3. Apply the patch to ISC DHCP (see ./../source/build.sh)
